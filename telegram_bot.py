@@ -19,7 +19,8 @@ def main():
     try:
         while True:
             link = random.choice(links)
-            bot.send_document(chat_id = os.getenv('CHAT_ID'), document=open(f'images/{link}', 'rb'))
+            with open(f'images/{link}', 'rb') as doc:
+                bot.send_document(chat_id = os.getenv('CHAT_ID'), document=doc)
             time.sleep(sec)
             if not links:
                 break
