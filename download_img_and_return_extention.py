@@ -11,7 +11,7 @@ def download_images(image_url, save_path, image_name, payloads = None):
     os.makedirs(os.path.join('./',save_path), exist_ok=True)
     response = requests.get(image_url, params=payloads,  verify=False)
     response.raise_for_status()
-    filename = sanitize_filepath(os.path.join(save_path, image_name))
+    filename = sanitize_filepath(os.path.join(save_path, f'{image_name}{return_extention(image_url)}'))
     with open(filename, 'wb') as file:
         file.write(response.content)
     return(response)

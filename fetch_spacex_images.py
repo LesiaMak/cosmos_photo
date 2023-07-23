@@ -13,7 +13,7 @@ def fetch_spacex_launch(launch_id):
     response.raise_for_status()
     image_links = response.json()['links']['flickr']['original']
     for image_number, link in enumerate(image_links):
-        download_img_and_return_extention.download_images(link, 'images', f'spaceex{image_number}{download_img_and_return_extention.return_extention(link)}')
+        download_img_and_return_extention.download_images(link, 'images', f'spaceex{image_number}')
     return response
 
 
