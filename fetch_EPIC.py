@@ -1,5 +1,7 @@
 import requests
 import os
+import urllib3
+import sys
 from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 import argparse
@@ -8,9 +10,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def fetch_EPIC(num_img):
-    for i in range(1, num_img):
+def fetch_EPIC(img_num):
+    for i in range(1, img_num):
         day = datetime.datetime(year=2018, month=5, day=30) + datetime.timedelta(days=i)
         date = day.strftime("%Y/%m/%d")
         payloads = {
