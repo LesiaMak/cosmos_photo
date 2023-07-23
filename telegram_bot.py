@@ -3,12 +3,13 @@ import os
 import random
 import argparse
 import time
+from dotenv import load_dotenv
 
-
+load_dotenv()
 
 
 def main():
-    bot = telegram.Bot(token='6102269452:AAHYMHa8CMjp_OBh_hnf2FEC4OpdVUml5Zc')
+    bot = telegram.Bot(token = os.getenv('TOKEN'))
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
@@ -18,7 +19,7 @@ def main():
     try:
         while True:
             link = random.choice(links)
-            bot.send_document(chat_id='-1001933811429', document=open(f'images/{link}', 'rb'))
+            bot.send_document(chat_id = os.getenv('CHAT_ID'), document=open(f'images/{link}', 'rb'))
             time.sleep(sec)
             if not links:
                 break
