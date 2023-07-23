@@ -11,10 +11,10 @@ load_dotenv()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def fetch_APOD(img_amount):
+def fetch_APOD(img_amount, api_id):
     payloads = { 
         'count': f'{img_amount}',
-        'api_key': os.getenv('API_ID'),
+        'api_key': api_id,
         }
     response = requests.get('https://api.nasa.gov/planetary/apod', params=payloads, verify=False)
     response.raise_for_status()
@@ -33,8 +33,9 @@ def main():
         description = 'Script downloads APOD')
     parser.add_argument('img_amount', help = 'Количество фото', default = 1, type = int)
     args = parser.parse_args()
+    api_id = os.getenv('API_ID')
     try:
-        APOD = fetch_APOD(args.img_amount)
+        APOD = fetch_APOD(args.img_amount, api_id)
     except requests.HTTPError:
         print('Фото не найдено', file=sys.stderr)
 

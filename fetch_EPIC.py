@@ -12,12 +12,12 @@ load_dotenv()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def fetch_EPIC(img_num):
+def fetch_EPIC(img_num, api_id):
     for i in range(1, img_num):
         day = datetime.datetime(year=2018, month=5, day=30) + datetime.timedelta(days=i)
         date = day.strftime("%Y/%m/%d")
         payloads = {
-            'api_key': os.getenv('API_ID'),
+            'api_key': api_id,
         }
         response = requests.get(f'https://api.nasa.gov/EPIC/api/natural/date/{day}', params=payloads, verify=False)
         response.raise_for_status()
@@ -38,8 +38,9 @@ def main():
         description = 'Script downloads EPIC')
     parser.add_argument('amount', help = 'Количество фото', default = 1, type = int)
     args = parser.parse_args()
+    api_id = os.getenv('API_ID')
     try:
-        APOD = fetch_EPIC(args.amount)
+        APOD = fetch_EPIC(args.amount, api_id)
     except requests.HTTPSError:
         print('Фото не найдено', file=sys.stderr)
 
