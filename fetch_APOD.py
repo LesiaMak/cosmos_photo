@@ -4,10 +4,11 @@ import sys
 from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 import argparse
+import urllib3
 from dotenv import load_dotenv
 
 load_dotenv()
-
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def fetch_APOD(img_amount):
@@ -34,7 +35,7 @@ def main():
     args = parser.parse_args()
     try:
         APOD = fetch_APOD(args.img_amount)
-    except requests.HTTPSError:
+    except requests.HTTPError:
         print('Фото не найдено', file=sys.stderr)
 
 
