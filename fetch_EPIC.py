@@ -27,7 +27,7 @@ def fetch_EPIC(img_num, api_id):
 
 def main():
     load_dotenv()
-    api_id = os.environ('API_ID')
+    api_id = os.environ('NASA_API_ID')
     parser = argparse.ArgumentParser(
         description = 'Script downloads EPIC')
     parser.add_argument('amount', help = 'Количество фото', default = 1, type = int)

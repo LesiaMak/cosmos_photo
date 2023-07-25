@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 def main():
     load_dotenv()
-    bot = telegram.Bot(token = os.environ('TOKEN'))
+    bot = telegram.Bot(token = os.environ('TELEGRAM_TOKEN'))
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
@@ -19,7 +19,7 @@ def main():
         while True:
             link = random.choice(links)
             with open(f'images/{link}', 'rb') as doc:
-                bot.send_document(chat_id = os.getenv('CHAT_ID'), document=doc)
+                bot.send_document(chat_id = os.getenv('TG_CHAT_ID'), document=doc)
             time.sleep(sec)
             if not links:
                 break
