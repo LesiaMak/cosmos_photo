@@ -6,7 +6,7 @@ from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 import argparse
 import datetime
-import download_img_and_return_extention
+import download_img_and_return_extension
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -24,7 +24,7 @@ def fetch_EPIC(img_num, api_id):
         response.raise_for_status()
         image_name = response.json()[-1]['image']
         image_link = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image_name}.png'
-        download_img_and_return_extention.download_images(image_link, 'images', image_name, payloads=payloads)
+        download_img_and_return_extension.download_images(image_link, 'images', image_name, payloads=payloads)
     return response
 
 download_images(image_link, 'images', image_name, payloads=payloads)

@@ -5,7 +5,7 @@ from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 import argparse
 import urllib3
-import download_img_and_return_extention
+import download_img_and_return_extension
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,7 +22,7 @@ def fetch_APOD(img_amount, api_id):
     os.makedirs(os.path.join('./','images'), exist_ok=True)
     for num in range(int(payloads['count'])):
         image_link = response.json()[num]["url"]
-        download_img_and_return_extention.download_images(image_link, 'images', f'{num}.png')           
+        download_img_and_return_extension.download_images(image_link, 'images', f'{num}.png')           
     return response
 
 

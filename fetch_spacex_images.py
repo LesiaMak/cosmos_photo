@@ -4,7 +4,7 @@ import os
 import sys
 from urllib.parse import urlparse
 import argparse
-import download_img_and_return_extention
+import download_img_and_return_extension
 
 
 
@@ -13,7 +13,7 @@ def fetch_spacex_launch(launch_id):
     response.raise_for_status()
     image_links = response.json()['links']['flickr']['original']
     for image_number, link in enumerate(image_links):
-        download_img_and_return_extention.download_images(link, 'images', f'spaceex{image_number}')
+        download_img_and_return_extension.download_images(link, 'images', f'spaceex{image_number}')
     return response
 
 
