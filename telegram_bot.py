@@ -15,7 +15,7 @@ def main():
         description = 'Script posts images')
     parser.add_argument('hours', help = 'Временной интервал публикаций', default = 4, type = int)
     args = parser.parse_args()
-    sec = args.hours * 3600
+    sec = args.hours 
     try:
         while True:
             link = random.choice(links)
@@ -24,7 +24,7 @@ def main():
             time.sleep(sec)
             if not links:
                 break
-            links.pop(links.index[link])
+            links.pop(links.index(link))
     except IndexError:
         pass
   
