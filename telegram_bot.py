@@ -5,10 +5,9 @@ import argparse
 import time
 from dotenv import load_dotenv
 
-load_dotenv()
-
 
 def main():
+    load_dotenv()
     bot = telegram.Bot(token = os.getenv('TOKEN'))
     links = os.listdir('images')
     parser = argparse.ArgumentParser(

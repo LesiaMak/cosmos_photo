@@ -9,7 +9,6 @@ import datetime
 import download_img_and_return_extension
 from dotenv import load_dotenv
 
-load_dotenv()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -32,6 +31,7 @@ download_images(image_link, 'images', image_name, payloads=payloads)
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description = 'Script downloads EPIC')
     parser.add_argument('amount', help = 'Количество фото', default = 1, type = int)

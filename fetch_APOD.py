@@ -8,7 +8,7 @@ import urllib3
 import download_img_and_return_extension
 from dotenv import load_dotenv
 
-load_dotenv()
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -28,6 +28,7 @@ def fetch_APOD(img_amount, api_id):
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description = 'Script downloads APOD')
     parser.add_argument('img_amount', help = 'Количество фото', default = 1, type = int)
