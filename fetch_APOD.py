@@ -29,11 +29,11 @@ def fetch_APOD(img_amount, api_id):
 
 def main():
     load_dotenv()
+    api_id = os.environ('API_ID')
     parser = argparse.ArgumentParser(
         description = 'Script downloads APOD')
     parser.add_argument('img_amount', help = 'Количество фото', default = 1, type = int)
-    args = parser.parse_args()
-    api_id = os.getenv('API_ID')
+    args = parser.parse_args()    
     try:
         APOD = fetch_APOD(args.img_amount, api_id)
     except requests.HTTPError:

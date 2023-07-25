@@ -2,8 +2,6 @@ import requests
 import os
 import urllib3
 import sys
-from pathvalidate import sanitize_filepath
-from urllib.parse import urlparse
 import argparse
 import datetime
 import download_img_and_return_extension
@@ -26,17 +24,15 @@ def fetch_EPIC(img_num, api_id):
         download_img_and_return_extension.download_images(image_link, 'images', image_name, payloads=payloads)
     return response
 
-download_images(image_link, 'images', image_name, payloads=payloads)
-
-
 
 def main():
     load_dotenv()
+    api_id = os.environ('API_ID')
     parser = argparse.ArgumentParser(
         description = 'Script downloads EPIC')
     parser.add_argument('amount', help = 'Количество фото', default = 1, type = int)
     args = parser.parse_args()
-    api_id = os.getenv('API_ID')
+   
     try:
         APOD = fetch_EPIC(args.amount, api_id)
     except requests.HTTPSError:

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 def main():
     load_dotenv()
-    bot = telegram.Bot(token = os.getenv('TOKEN'))
+    bot = telegram.Bot(token = os.environ('TOKEN'))
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
