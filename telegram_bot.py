@@ -6,9 +6,15 @@ import time
 from dotenv import load_dotenv
 
 
+def post_image(chat_id, doc):
+    bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
+    bot.send_document(chat_id = chat_id, document=doc)
+    return bot
+
+
 def main():
     load_dotenv()
-    bot = telegram.Bot(token = os.environ('TELEGRAM_TOKEN'))
+    tg_chat_id = os.environ['TG_CHAT_ID']
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
@@ -19,7 +25,7 @@ def main():
         while True:
             link = random.choice(links)
             with open(f'images/{link}', 'rb') as doc:
-                bot.send_document(chat_id = os.getenv('TG_CHAT_ID'), document=doc)
+                post_image(tg_chat_id, doc)
             time.sleep(sec)
             if not links:
                 break

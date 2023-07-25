@@ -4,10 +4,17 @@ import random
 import argparse
 from dotenv import load_dotenv
 
-load_dotenv()
+
+
+def post_image(chat_id, doc):
+    bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
+    bot.send_document(chat_id = chat_id, document=doc)
+    return bot
+
 
 def main():
-    bot = telegram.Bot(token=os.environ('TELEGRAM_TOKEN'))
+    load_dotenv()
+    tg_chat_id = os.environ['TG_CHAT_ID']
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts certain image')
@@ -15,7 +22,7 @@ def main():
     args = parser.parse_args()
     try:
         with open(f'images/{args.image}', 'rb') as doc:
-            bot.send_document(chat_id=os.environ('TG_CHAT_ID'), document=doc)
+            post_image(tg_chat_id, doc)
     except IndexError:
         pass
 
