@@ -3,6 +3,7 @@ import os
 import random
 import argparse
 from dotenv import load_dotenv
+from pathlib import Path
 
 
 
@@ -21,7 +22,7 @@ def main():
     parser.add_argument('image', help = 'Наименование изображения', default = random.choice(links), type = str)
     args = parser.parse_args()
     try:
-        with open(f'images/{args.image}', 'rb') as doc:
+        with open(Path('images', args.image), 'rb') as doc:
             post_image(tg_chat_id, doc)
     except IndexError:
         pass

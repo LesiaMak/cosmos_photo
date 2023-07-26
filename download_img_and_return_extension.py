@@ -1,7 +1,7 @@
 import requests
 import urllib3
 import os
-import pathlib import Path
+from pathlib import Path
 from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 
@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def download_images(image_url, save_path, image_name, payloads = None):
-    os.makedirs(os.path.join('./',save_path), exist_ok=True)
+    os.makedirs(Path('.',save_path), exist_ok=True)
     response = requests.get(image_url, params=payloads,  verify=False)
     response.raise_for_status()
     filename = sanitize_filepath(os.path.join(save_path, f'{image_name}{return_extension(image_url)}'))

@@ -3,6 +3,7 @@ import os
 import random
 import argparse
 import time
+from pathlib import Path
 from dotenv import load_dotenv
 
 
@@ -24,7 +25,7 @@ def main():
     try:
         while True:
             link = random.choice(links)
-            with open(f'images/{link}', 'rb') as doc:
+            with open(Path('images', link), 'rb') as doc:
                 post_image(tg_chat_id, doc)
             time.sleep(sec)
             if not links:

@@ -1,7 +1,6 @@
 import requests
 import os
 import sys
-from pathvalidate import sanitize_filepath
 from urllib.parse import urlparse
 import argparse
 import urllib3
