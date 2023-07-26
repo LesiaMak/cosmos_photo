@@ -15,7 +15,7 @@ def download_images(image_url, save_path, image_name, payloads = None):
     filename = sanitize_filepath(os.path.join(save_path, f'{image_name}{return_extension(image_url)}'))
     with open(filename, 'wb') as file:
         file.write(response.content)
-    return(response)
+   
 
 
 def return_extension(url):

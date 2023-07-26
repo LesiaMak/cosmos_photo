@@ -10,7 +10,7 @@ from pathlib import Path
 def post_image(chat_id, doc):
     bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
     bot.send_document(chat_id = chat_id, document=doc)
-    return bot
+    
 
 
 def main():

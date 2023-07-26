@@ -1,7 +1,6 @@
 import requests
 import os
 import sys
-from urllib.parse import urlparse
 import argparse
 import urllib3
 import download_img_and_return_extension
@@ -18,10 +17,11 @@ def fetch_APOD(img_amount, api_id):
         }
     response = requests.get('https://api.nasa.gov/planetary/apod', params=payloads, verify=False)
     response.raise_for_status()
+    APODs = response.json()
     for num in range(int(payloads['count'])):
-        image_link = response.json()[num]["url"]
+        image_link = APODs[num]["url"]
         download_img_and_return_extension.download_images(image_link, 'images', f'{num}')           
-    return response
+    
 
 
 
