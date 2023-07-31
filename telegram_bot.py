@@ -21,8 +21,7 @@ def main():
     try:
         while True:
             link = random.choice(links)
-            with open(Path('images', link), 'rb') as doc:
-                post_image.post(tg_chat_id, token, doc)
+            post_image.post_doc('images', link, tg_chat_id, token )
             time.sleep(sec)
             if not links:
                 break

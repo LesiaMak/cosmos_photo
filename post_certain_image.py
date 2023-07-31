@@ -7,7 +7,6 @@ from pathlib import Path
 import post_image
  
 
-
 def main():
     load_dotenv()
     tg_chat_id = os.environ['TG_CHAT_ID']
@@ -18,8 +17,7 @@ def main():
     parser.add_argument('--image', help = 'Наименование изображения', default = random.choice(links), type = str)
     args = parser.parse_args()
     try:
-        with open(Path('images', args.image), 'rb') as doc:
-            post_image.post(tg_chat_id, token, doc)
+        post_image.post_doc('images', args.image, tg_chat_id, token)
     except IndexError:
         pass
 

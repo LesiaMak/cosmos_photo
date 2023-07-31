@@ -1,6 +1,10 @@
 import telegram
-import os
-from dotenv import load_dotenv
+from pathlib import Path
+
+
+def post_doc(folder, image_name, tg_chat_id, token):
+    with open(Path(folder, image_name), 'rb') as doc:
+        post(tg_chat_id, token, doc)
 
 
 def post(chat_id,tg_token, doc):
