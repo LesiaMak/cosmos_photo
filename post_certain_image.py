@@ -4,13 +4,8 @@ import random
 import argparse
 from dotenv import load_dotenv
 from pathlib import Path
-
-
-
-def post_image(chat_id, doc):
-    bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
-    bot.send_document(chat_id = chat_id, document=doc)
-    
+import post_image
+ 
 
 
 def main():
@@ -23,7 +18,7 @@ def main():
     args = parser.parse_args()
     try:
         with open(Path('images', args.image), 'rb') as doc:
-            post_image(tg_chat_id, doc)
+            post_image.post(tg_chat_id, doc)
     except IndexError:
         pass
 

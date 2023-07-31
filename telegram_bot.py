@@ -5,12 +5,7 @@ import argparse
 import time
 from pathlib import Path
 from dotenv import load_dotenv
-
-
-def post_image(chat_id, doc):
-    bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
-    bot.send_document(chat_id = chat_id, document=doc)
-    
+import post_image
 
 
 def main():
@@ -26,7 +21,7 @@ def main():
         while True:
             link = random.choice(links)
             with open(Path('images', link), 'rb') as doc:
-                post_image(tg_chat_id, doc)
+                post_image.post(tg_chat_id, doc)
             time.sleep(sec)
             if not links:
                 break
