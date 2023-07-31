@@ -18,9 +18,8 @@ def fetch_APOD(img_amount, api_id):
     response = requests.get('https://api.nasa.gov/planetary/apod', params=payloads, verify=False)
     response.raise_for_status()
     APODs = response.json()
-    for num in range(img_amount):
-        image_link = APODs[num]["url"]
-        download_img_and_return_extension.download_images(image_link, 'images', f'{num}')           
+    for image_num, APOD in enumerate(APODs):
+        download_img_and_return_extension.download_images(APOD["url"], 'images', f'{image_num}')           
     
 
 
@@ -30,7 +29,7 @@ def main():
     api_id = os.environ['NASA_API_TOKEN']
     parser = argparse.ArgumentParser(
         description = 'Script downloads APOD')
-    parser.add_argument('--img_amount', help = 'Количество фото', default = 1, type = int)
+    parser.add_argument('--img_amount', help = 'Количество фото', default = 5, type = int)
     args = parser.parse_args()    
     try:
         APOD = fetch_APOD(args.img_amount, api_id)
