@@ -10,16 +10,23 @@ from dotenv import load_dotenv
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+def get_image_name(api_id, day):
+    payloads = {
+            'api_key': api_id,
+        }
+    response = requests.get(f'https://api.nasa.gov/EPIC/api/natural/date/{day}', params=payloads, verify=False)
+    response.raise_for_status()
+    image_name = response.json()[-1]['image']
+    return image_name
+
+
+
+
 def fetch_EPIC(img_num, api_id):
     for i in range(1, img_num):
         day = datetime.datetime(year=2018, month=5, day=30) + datetime.timedelta(days=i)
         date = day.strftime("%Y/%m/%d")
-        payloads = {
-            'api_key': api_id,
-        }
-        response = requests.get(f'https://api.nasa.gov/EPIC/api/natural/date/{day}', params=payloads, verify=False)
-        response.raise_for_status()
-        image_name = response.json()[-1]['image']
+        image_name = get_image_name(api_id, day)
         image_link = f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image_name}.png'
         download_img_and_return_extension.download_images(image_link, 'images', image_name, payloads=payloads)
     

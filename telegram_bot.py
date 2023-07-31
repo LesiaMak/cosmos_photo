@@ -20,12 +20,13 @@ def main():
     sec = args.hours 
     try:
         while True:
-            link = random.choice(links)
-            post_image.post_doc('images', link, tg_chat_id, token )
-            time.sleep(sec)
-            if not links:
-                break
-            links.pop(links.index(link))
+            for link in links:            
+                post_image.post_doc('images', link, tg_chat_id, token )
+                links.pop(links.index(link))
+                time.sleep(sec)
+                if not links:
+                    links = os.listdir('images')
+                    link = random.choice(links)                            
     except IndexError:
         pass
   
