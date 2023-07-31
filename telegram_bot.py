@@ -11,6 +11,7 @@ import post_image
 def main():
     load_dotenv()
     tg_chat_id = os.environ['TG_CHAT_ID']
+    token = os.environ['TELEGRAM_TOKEN']
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
@@ -21,7 +22,7 @@ def main():
         while True:
             link = random.choice(links)
             with open(Path('images', link), 'rb') as doc:
-                post_image.post(tg_chat_id, doc)
+                post_image.post(tg_chat_id, token, doc)
             time.sleep(sec)
             if not links:
                 break

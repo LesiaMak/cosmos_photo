@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
-def post(chat_id, doc):
-    bot = telegram.Bot(token = os.environ['TELEGRAM_TOKEN'])
+def post(chat_id,tg_token, doc):
+    bot = telegram.Bot(token = tg_token)
     bot.send_document(chat_id = chat_id, document=doc)
 

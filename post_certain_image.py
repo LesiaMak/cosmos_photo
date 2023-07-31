@@ -11,6 +11,7 @@ import post_image
 def main():
     load_dotenv()
     tg_chat_id = os.environ['TG_CHAT_ID']
+    token = os.environ['TELEGRAM_TOKEN']
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts certain image')
@@ -18,7 +19,7 @@ def main():
     args = parser.parse_args()
     try:
         with open(Path('images', args.image), 'rb') as doc:
-            post_image.post(tg_chat_id, doc)
+            post_image.post(tg_chat_id, token, doc)
     except IndexError:
         pass
 
