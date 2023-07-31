@@ -19,7 +19,7 @@ def main():
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
-    parser.add_argument('hours', help = 'Временной интервал публикаций', default = 4, type = int)
+    parser.add_argument('--hours', help = 'Временной интервал публикаций', default = 4, type = int)
     args = parser.parse_args()
     sec = args.hours 
     try:

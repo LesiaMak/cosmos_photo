@@ -30,7 +30,7 @@ def main():
     api_id = os.environ['NASA_API_TOKEN']
     parser = argparse.ArgumentParser(
         description = 'Script downloads EPIC')
-    parser.add_argument('amount', help = 'Количество фото', default = 1, type = int)
+    parser.add_argument('--amount', help = 'Количество фото', default = 2, type = int)
     args = parser.parse_args()
    
     try:

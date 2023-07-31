@@ -30,7 +30,7 @@ def main():
     api_id = os.environ['NASA_API_TOKEN']
     parser = argparse.ArgumentParser(
         description = 'Script downloads APOD')
-    parser.add_argument('img_amount', help = 'Количество фото', default = 1, type = int)
+    parser.add_argument('--img_amount', help = 'Количество фото', default = 1, type = int)
     args = parser.parse_args()    
     try:
         APOD = fetch_APOD(args.img_amount, api_id)

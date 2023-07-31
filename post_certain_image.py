@@ -19,7 +19,7 @@ def main():
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts certain image')
-    parser.add_argument('image', help = 'Наименование изображения', default = random.choice(links), type = str)
+    parser.add_argument('--image', help = 'Наименование изображения', default = random.choice(links), type = str)
     args = parser.parse_args()
     try:
         with open(Path('images', args.image), 'rb') as doc:

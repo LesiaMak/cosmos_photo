@@ -18,7 +18,7 @@ def fetch_spacex_launch(launch_id):
 def main():
     parser = argparse.ArgumentParser(
         description = 'Script downloads image of SpaceX launches')
-    parser.add_argument('launch_id', help='ID запуска', default='latest', type = str)
+    parser.add_argument('--launch_id', help='ID запуска', default='latest', type = str)
     args = parser.parse_args()
     try:
         launch = fetch_spacex_launch(args.launch_id)
