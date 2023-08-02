@@ -3,7 +3,7 @@ import os
 import random
 import argparse
 import time
-from pathlib import Path
+import sys
 from dotenv import load_dotenv
 import post_image
 
@@ -17,7 +17,7 @@ def main():
         description = 'Script posts images')
     parser.add_argument('--hours', help = 'Временной интервал публикаций', default = 4, type = int)
     args = parser.parse_args()
-    sec = args.hours 
+    sec = args.hours
     try:
         while True:
             for link in links:            
@@ -28,7 +28,10 @@ def main():
                     links = os.listdir('images')
                     link = random.choice(links)                            
     except IndexError:
-        pass
+        print('Фото не найдено', file=sys.stderr)
+    except telegram.error.NetworkError:
+        print('Нет связи с сервером', file=sys.stderr)
+    
   
 if __name__=='__main__':
     main()

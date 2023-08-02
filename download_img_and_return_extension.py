@@ -21,7 +21,7 @@ def download_images(image_url, save_path, image_name, payloads = None):
 def return_extension(url):
     path = urlparse(url).path
     splitted_path = os.path.split(path)[1]
-    extention = os.path.splitext(splitted_path)[1]
-    return extention
+    extension = os.path.splitext(splitted_path)[1]
+    return extension
 
 

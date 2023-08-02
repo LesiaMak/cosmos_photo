@@ -1,5 +1,5 @@
-import telegram
 import os
+import sys
 import random
 import argparse
 from dotenv import load_dotenv
@@ -19,7 +19,7 @@ def main():
     try:
         post_image.post_doc('images', args.image, tg_chat_id, token)
     except IndexError:
-        pass
+        print('Фото не найдено', file=sys.stderr)
 
 if __name__=='__main__':
     main()

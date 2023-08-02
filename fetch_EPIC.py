@@ -42,7 +42,7 @@ def main():
    
     try:
         APOD = fetch_EPIC(args.amount, api_id)
-    except requests.HTTPSError:
+    except requests.HTTPError:
         print('Фото не найдено', file=sys.stderr)
 
 
