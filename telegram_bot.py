@@ -1,6 +1,5 @@
 import telegram
 import os
-import random
 import argparse
 import time
 import sys
@@ -15,18 +14,17 @@ def main():
     links = os.listdir('images')
     parser = argparse.ArgumentParser(
         description = 'Script posts images')
-    parser.add_argument('--hours', help = 'Временной интервал публикаций', default = 4, type = int)
+    parser.add_argument('--sec', help = 'Временной интервал публикаций', default = 4, type = int)
     args = parser.parse_args()
-    sec = args.hours
     try:
-        while True:
+        while links:
             for link in links:            
                 post_image.post_doc('images', link, tg_chat_id, token )
                 links.pop(links.index(link))
-                time.sleep(sec)
-                if not links:
-                    links = os.listdir('images')
-                    link = random.choice(links)                            
+                time.sleep(args.sec)
+        else:
+            links = os.listdir('images')
+                                               
     except IndexError:
         print('Фото не найдено', file=sys.stderr)
     except telegram.error.NetworkError:
