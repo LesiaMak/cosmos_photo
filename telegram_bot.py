@@ -22,12 +22,14 @@ def main():
                 post_image.post_doc('images', link, tg_chat_id, token )
                 links.pop(links.index(link))
                 time.sleep(args.sec)
-            except  telegram.error.NetworkError:
+            except telegram.error.NetworkError:
                 print('Нет связи с сервером', file=sys.stderr)
+                time.sleep(5)
             except IndexError:
                 print('Фото не найдено', file=sys.stderr)
-            if not links:
-                links = os.listdir('images')
+        if not links:
+            links = os.listdir('images')
+
                                               
   
 if __name__=='__main__':
