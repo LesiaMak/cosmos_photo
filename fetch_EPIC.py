@@ -30,7 +30,6 @@ def fetch_EPIC(img_num, api_id):
         payloads = {
             'api_key': api_id,
         }
-        print(image_link)
         download_img_and_return_extension.download_images(image_link, 'images', image_name, payloads)
     
 
