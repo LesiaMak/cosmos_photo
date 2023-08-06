@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+
 def get_image_name(api_id, day):
     payloads = {
             'api_key': api_id,
@@ -31,22 +32,22 @@ def fetch_EPIC(img_num, api_id):
             'api_key': api_id,
         }
         download_img_and_return_extension.download_images(image_link, 'images', image_name, payloads)
-    
 
 
 def main():
     load_dotenv()
     api_id = os.environ['NASA_API_TOKEN']
     parser = argparse.ArgumentParser(
-        description = 'Script downloads EPIC')
-    parser.add_argument('--amount', help = 'Количество фото', default = 10, type = int)
+        description='Script downloads EPIC')
+    parser.add_argument('--amount', help='Количество фото', default=10, type=int)
     args = parser.parse_args()
-   
+
     try:
-        APOD = fetch_EPIC(args.amount, api_id)
+        fetch_EPIC(args.amount, api_id)
     except requests.HTTPError:
         print('Фото не найдено', file=sys.stderr)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
+
